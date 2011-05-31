@@ -1,0 +1,18 @@
+=Installation
+
+Via git :
+
+--Fork it !
+
+git clone git@github.com:stephaneerard/sfDecoratedDecoratorPlugin.git plugins/sfDecoratedDecoratorPlugin
+
+Enable it !
+
+config/ProjectConfiguration.class.php
+
+in setup() :
+
+    $this->enablePlugins(array(
+      //... other bunch of plugins
+      'sfDecoratedDecoratorPlugin',
+    ));
