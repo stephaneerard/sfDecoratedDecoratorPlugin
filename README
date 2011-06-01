@@ -1,3 +1,10 @@
+This plugin will offer you a way to wrap your $sf_content within a layout, then wrap it again within another layout.
+
+It is a two-level template decoration, following the symfony view layout+template way.
+
+$sf_content decorated by "your layout" decorated by "usual symfony layout"
+
+
 =Installation
 
 Via git :
@@ -16,3 +23,32 @@ in setup() :
       //... other bunch of plugins
       'sfDecoratedDecoratorPlugin',
     ));
+
+    
+In your modules, create a view directory :
+apps/front/modules/dmFront/view/
+
+In this directory, create a xxxxSuccessView.class.php file, which will be the view engine used to render your xxxx action.
+
+For example, for the pageSuccess template, the pageSuccessView file will be loaded and it should find in it a pageSuccessView class.
+This class will be instanciated by the symfony framework for you.
+
+
+
+This plugin offers you a class named sfDecoratedDecoratorView, so basically all you have to do is to make your pageSuccessView extend this class !
+
+<?php
+class pageSuccessView extends sfDecoratedDecoratorView
+{
+
+}
+
+
+Then configure your app.yml:
+all:
+  
+  decoratedDecorator: 
+    dir: <?php echo sfConfig::get('sf_apps_dir')?>/front/modules/dmFront/templates
+    template: myDecoratedDecoratedLayout.php
+
+That's all !
